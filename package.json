@@ -2,6 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "test": "jest",
         "dev": "vite",
         "build": "vite build"
     },
