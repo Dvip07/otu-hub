@@ -15,6 +15,7 @@ Route::get('/', function () {
 });
 
 Route::inertia('/create-post', 'createPost')->name('createPost');
+Route::inertia('/create-community', 'createCommunity')->name('createCommunity');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

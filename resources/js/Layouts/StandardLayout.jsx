@@ -59,6 +59,7 @@ export default function StandardLayout({ header, children }) {
     const [isClosing, setIsClosing] = useState(false);
     const [expanded, setExpanded] = useState(true);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const [anchorElCreate, setAnchorElCreate] = useState(null);
 
     let drawerIcons = {
         Home: {
@@ -102,9 +103,15 @@ export default function StandardLayout({ header, children }) {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
+    const handleOpenCreateMenu = (event) => {
+        setAnchorElCreate(event.currentTarget);
+    };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+    const handleCloseCreateMenu = () => {
+        setAnchorElCreate(null);
     };
 
     const drawer = (
@@ -233,26 +240,77 @@ export default function StandardLayout({ header, children }) {
 
                     {user?.id ? (
                         <Box sx={{ flexGrow: 0 }}>
-                            <Link href={route("createPost")}>
-                                <Button
-                                    sx={{
-                                        bgcolor: "#003C71",
-                                        paddingX: "1em",
-                                        paddingY: "0.5em",
-                                        color: "#FFFFFF",
-                                        borderRadius: 50,
-                                        mr: 2,
+                            <Button
+                                sx={{
+                                    bgcolor: "#003C71",
+                                    paddingX: "1em",
+                                    paddingY: "0.5em",
+                                    color: "#FFFFFF",
+                                    borderRadius: 50,
+                                    mr: 2,
+                                }}
+                                onClick={handleOpenCreateMenu}
+                                startIcon={
+                                    <FontAwesomeIcon
+                                        icon={faPlus}
+                                        color="#FFFFFF"
+                                    />
+                                }
+                            >
+                                Create
+                            </Button>
+                            <Menu
+                                sx={{ mt: "45px" }}
+                                id="menu-appbar"
+                                anchorEl={anchorElCreate}
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                open={Boolean(anchorElCreate)}
+                                onClose={handleCloseCreateMenu}
+                            >
+                                <Link
+                                    style={{
+                                        textDecoration: "none",
+                                        color: "#003C71",
                                     }}
-                                    startIcon={
-                                        <FontAwesomeIcon
-                                            icon={faPlus}
-                                            color="#FFFFFF"
-                                        />
-                                    }
+                                    href={route("createPost")}
                                 >
-                                    Create
-                                </Button>
-                            </Link>
+                                    <MenuItem onClick={handleCloseCreateMenu}>
+                                        <Typography
+                                            sx={{
+                                                textAlign: "center",
+                                            }}
+                                        >
+                                            Post
+                                        </Typography>
+                                    </MenuItem>
+                                </Link>
+                                <Link
+                                    style={{
+                                        textDecoration: "none",
+                                        color: "#003C71",
+                                    }}
+                                    href={route("createCommunity")}
+                                >
+                                    <MenuItem onClick={handleCloseCreateMenu}>
+                                        <Typography
+                                            sx={{
+                                                textAlign: "center",
+                                            }}
+                                        >
+                                            Community
+                                        </Typography>
+                                    </MenuItem>
+                                </Link>
+                            </Menu>
+
                             <Tooltip title="Open settings">
                                 <IconButton
                                     onClick={handleOpenUserMenu}
