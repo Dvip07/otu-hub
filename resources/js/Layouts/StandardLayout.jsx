@@ -69,7 +69,7 @@ export default function StandardLayout({ header, children }) {
     };
 
     let loggedInSettings = {
-        Profile: "dashboard",
+        Profile: "user",
         "Log out": "logout",
     };
 
@@ -167,28 +167,36 @@ export default function StandardLayout({ header, children }) {
                                     paddingLeft: 0,
                                 }}
                             >
-                                <ListItemButton
-                                    disableGutters
-                                    sx={{
-                                        padding: 0,
-                                        "&:hover": {
-                                            backgroundColor: "transparent",
-                                        },
+                                <Link
+                                    href={route("community")}
+                                    style={{
+                                        textDecoration: "none",
+                                        color: "#FFFFFF",
                                     }}
                                 >
-                                    <ListItemIcon>
-                                        <Avatar
-                                            alt={text}
-                                            src={
-                                                dummyComms[text]
-                                                    ? dummyComms[text]
-                                                    : "/"
-                                            }
-                                            sx={{ bgcolor: "#E75D2A" }}
-                                        />
-                                    </ListItemIcon>
-                                    <ListItemText primary={text} />
-                                </ListItemButton>
+                                    <ListItemButton
+                                        disableGutters
+                                        sx={{
+                                            padding: 0,
+                                            "&:hover": {
+                                                backgroundColor: "transparent",
+                                            },
+                                        }}
+                                    >
+                                        <ListItemIcon>
+                                            <Avatar
+                                                alt={text}
+                                                src={
+                                                    dummyComms[text]
+                                                        ? dummyComms[text]
+                                                        : "/"
+                                                }
+                                                sx={{ bgcolor: "#E75D2A" }}
+                                            />
+                                        </ListItemIcon>
+                                        <ListItemText primary={text} />
+                                    </ListItemButton>
+                                </Link>
                             </ListItem>
                         ))}
                     </List>

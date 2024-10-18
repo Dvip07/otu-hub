@@ -14,8 +14,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::inertia('/create-post', 'createPost')->name('createPost');
-Route::inertia('/create-community', 'createCommunity')->name('createCommunity');
+Route::inertia('/create-post', 'createPost')->middleware(['auth', 'verified'])->name('createPost');
+Route::inertia('/create-community', 'createCommunity')->middleware(['auth', 'verified'])->name('createCommunity');
+
+Route::get('/user', function () {
+    return Inertia::render('User');
+})->name('user');
+
+Route::get('/community', function () {
+    return Inertia::render('Community');
+})->name('community');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
