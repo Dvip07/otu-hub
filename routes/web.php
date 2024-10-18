@@ -14,6 +14,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::inertia('/create-post', 'createPost')->name('createPost');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
