@@ -18,6 +18,7 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
+import { Inertia } from '@inertiajs/inertia';
 
 export default function createPost({ auth, laravelVersion, phpVersion }) {
     const dummyComms = [
@@ -58,12 +59,48 @@ export default function createPost({ auth, laravelVersion, phpVersion }) {
         });
     }, []);
 
+    // const submit = (e) => {
+    //     // e.preventDefault();
+    //     // post(route('login'), {
+    //     //     onFinish: () => reset('password'),
+    //     // });
+    // };
+
     const submit = (e) => {
-        // e.preventDefault();
-        // post(route('login'), {
-        //     onFinish: () => reset('password'),
-        // });
+        e.preventDefault();
+
+        // Create FormData to handle file uploads
+        const formData = new FormData();
+        formData.append('community', data.community);
+        formData.append('postTitle', data.postTitle);
+        formData.append('postDescription', data.postDescription);
+        formData.append('link', data.link);
+        
+        // If a file is selected, append it to the FormData
+        if (data.fileUpload) {
+            formData.append('fileUpload', data.fileUpload);
+        }
+
+        // Use Inertia to post the form data to the server
+        Inertia.post(route('posts.store'), formData, {
+            forceFormData: true, // Ensures file uploads are handled correctly
+            onError: (err) => {
+                // Handle validation errors from the server
+                setErrors(err);
+            },
+            onSuccess: () => {
+                // Clear the form upon successful submission
+                setData({
+                    community: '',
+                    postTitle: '',
+                    postDescription: '',
+                    link: '',
+                    fileUpload: null,
+                });
+            },
+        });
     };
+
     return (
         <StandardLayout>
             <Head title="createPost" />
@@ -107,7 +144,7 @@ export default function createPost({ auth, laravelVersion, phpVersion }) {
                                             id="selectCommunity"
                                             sx={(theme) => ({
                                                 display: "inline-block",
-                                                "& input": {
+                                                "& input": { 
                                                     width: 300,
                                                     bgcolor: "#FFFFFF",
                                                     color: "#000000",

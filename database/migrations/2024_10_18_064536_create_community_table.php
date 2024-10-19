@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('community', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('user_id')->foreign('user_id')->references('id')->on('users');
+            $table->string('name'); 
             $table->string('description');
-            $table->string('avatar');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->string('avatar')->nullable(); 
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
+            $table->timestamps(); 
+            $table->softDeletes(); 
         });
     }
 
