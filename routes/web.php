@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\PostsController;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
@@ -15,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::inertia('/create-post', 'createPost')->name('createPost');
+Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
