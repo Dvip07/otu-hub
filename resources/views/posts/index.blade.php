@@ -73,6 +73,32 @@
 @section('content')
 
 <div class="container col-md-6">
+    <!--creat post in  view post section-->
+    <div class="col-md-12 card p-3">
+        <div class="row align-items-center">
+            <!-- Avatar Section -->
+            <div class="col-md-2 d-flex justify-content-center">
+                <div class="avatar avatar-l">
+                    <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
+                        pi
+                    </span>
+                </div>
+            </div>
+            <!-- Input Field Section -->
+            <div class="col-md-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="defaultFormControlInput"
+                  placeholder="Share post"
+                  aria-describedby="defaultFormControlHelp"
+                  readonly>
+            </div>
+        </div>
+    </div>
+    
+
+    
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex align-items-center">
