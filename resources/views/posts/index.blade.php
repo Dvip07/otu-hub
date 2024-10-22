@@ -73,24 +73,30 @@
 @section('content')
 
 <div class="container col-md-6">
-    <div class="d-flex align-items-center mb-3">
-        <!-- Avatar -->
-        <div class="avatar avatar-l me-2">
-            <span class="avatar-initial rounded-circle bg-info">pi</span>
+    <div class="col-md-12 card p-3">
+        <div class="row align-items-center">
+            <!-- Avatar Section -->
+            <div class="col-md-1 d-flex justify-content-center">
+                <div class="avatar avatar-l" style="width: 60px; height: 50px;">
+                    <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
+                        pi
+                    </span>
+                </div>
+            </div>
+            <!-- Input Field Section -->
+            <div class="col-md-11">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="defaultFormControlInput"
+                  placeholder="Share post"
+                  aria-describedby="defaultFormControlHelp"
+                  readonly>
+            </div>
         </div>
-        <!-- Label for Name -->
-        <label for="defaultFormControlInput" class="form-label mb-0">Name</label>
     </div>
     
-    <div class="col-md-8 mb-3 card">
-        <input
-          type="text"
-          class="form-control"
-          id="defaultFormControlInput"
-          placeholder="Share post"
-          aria-describedby="defaultFormControlHelp"
-          readonly>
-    </div>
+
     
     <div class="card mb-3">
         <div class="card-body">
