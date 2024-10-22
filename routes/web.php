@@ -41,7 +41,7 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'crm'])->name('dashboard-crm');
 
     // Profile
-    Route::get('/profile/{id}', [UserController::class, 'show'])->name('view-profile');
+    Route::get('/profile/{id}', [UserController::class, 'edit'])->name('view-profile');
 
     // Posts
     Route::resource('posts', PostsController::class);
@@ -59,4 +59,6 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::resource('comments', CommentsController::class);
 
     // Route::get('/add/post', [DashboardController::class, 'add'])->name('add-post');
+
+    Route::post('/change-password/{id}', [UserController::class, 'changePassword'])->name('password.change');
 });
