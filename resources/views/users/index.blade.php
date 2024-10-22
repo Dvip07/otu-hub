@@ -175,11 +175,8 @@
             <div class="card mb-4">
                 <h5 class="card-header">Change Password</h5>
                 <div class="card-body">
-                    <form id="formChangePassword" method="POST">
+                    <form id="formChangePassword" action="{{ route('password.change', ['id' => $user->id]) }}" method="POST">
                         @csrf
-                        @foreach($users as $user)
-                        <input type="hidden" name="userId" value="{{ $user->id }}">
-                        @endforeach
                         <div class="alert alert-warning" role="alert">
                             <h5 class="alert-heading mb-2">Ensure that these requirements are met</h5>
                             <span>Minimum 8 characters long, uppercase & symbol</span>
@@ -199,8 +196,7 @@
                                 <div class="input-group input-group-merge">
                                     <input class="form-control" type="password" name="confirmPassword"
                                         id="confirmPassword"
-                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        oninput="checkFunction(this.value)" />
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                     <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
                                 </div>
                             </div>
@@ -209,8 +205,13 @@
                             </div>
                         </div>
                     </form>
-                    <div id="errorMessages" class="alert alert-danger mt-2" style="display: none;"></div>
-                    <div id="successMessage" class="alert alert-success mt-2" style="display: none;"></div>
+                    @if (session('error'))
+                    <div class="alert alert-danger mt-2">{{ session('error') }}</div>
+                    @endif
+
+                    @if (session('success'))
+                    <div class="alert alert-success mt-2">{{ session('success') }}</div>
+                    @endif
                 </div>
             </div>
             <!-- Connected Communities -->
@@ -275,7 +276,7 @@
         </div>
     </div>
 </div>
-<script>
+<!-- <script>
     $('#formChangePassword').on('submit', function(e) {
         e.preventDefault();
 
@@ -322,5 +323,5 @@
             });
         }
     });
-</script>
+</script> -->
 @endsection
