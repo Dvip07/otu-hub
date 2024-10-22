@@ -76,17 +76,17 @@
         @if (Auth::user()->role == 'Super Admin')
             <li class="menu-item ">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons ti ti-calendar"></i>
-                    <div>Pages</div>
+                    <i class="menu-icon tf-icons ti ti-mailbox"></i>
+                    <div>Post</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item ">
-                        <a href="{{ route('view-profile')}}" class="menu-link">
-                            <div>View Profile</div>
+                    <li class="menu-item">
+                        <a href="{{ route('posts.index') }}" class="menu-link">
+                            <div>View Posts</div>
                         </a>
                     </li>
-                    <li class="menu-item ">
-                        <a href="{{ route('add-post')}}" class="menu-link">
+                    <li class="menu-item">
+                        <a href="{{ route('posts.create') }}" class="menu-link">
                             <div>Create Post</div>
                         </a>
                     </li>

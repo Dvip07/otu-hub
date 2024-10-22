@@ -14,7 +14,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        return view('posts.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -35,17 +35,22 @@ class PostsController extends Controller
         // Handle file upload
         if ($request->hasFile('media')) {
             $file = $request->file('media');
-            $filePath = $file->store('uploads', 'public'); 
-            $validatedData['media'] = $filePath; 
+            $filePath = $file->store('uploads', 'public');
+            $validatedData['media'] = $filePath;
         }
 
         $validatedData['user_id'] = Auth::id();
         // dd($validatedData);
 
-        Posts::create($validatedData);
+        $post = Posts::create($validatedData);
 
-        // Return response or redirect
-        return redirect()->url('/posts')->with('success', 'Post created successfully!');
+        if ($post) {
+            // Redirect to a success page or show a success message
+            return redirect()->route('posts.index')->with('success', 'Post created successfully!');
+        } else {
+            // Handle errors and redirect back to the form with error messages
+            return back()->withErrors($validatedData)->withInput();
+        }
     }
 
     /**
@@ -53,7 +58,9 @@ class PostsController extends Controller
      */
     public function show(Posts $posts)
     {
-        //
+        // $posts = Posts::find($posts->id);
+
+        // return view('posts.show', compact('posts'));
     }
 
     /**

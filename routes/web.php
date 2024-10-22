@@ -14,6 +14,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\EngagementController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\UserController;
 
 date_default_timezone_set('Asia/Kolkata');
 Route::get('/refresh', function () {
@@ -39,6 +40,8 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard-blank');
     Route::get('/dashboard', [DashboardController::class, 'crm'])->name('dashboard-crm');
 
+    // Profile
+    Route::get('/profile/{id}', [UserController::class, 'show'])->name('view-profile');
 
     // Posts
     Route::resource('posts', PostsController::class);
@@ -55,6 +58,5 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     // Comments
     Route::resource('comments', CommentsController::class);
 
-    Route::get('/view/profile', [DashboardController::class, 'view'])->name('view-profile');
-    Route::get('/add/post', [DashboardController::class, 'add'])->name('add-post');
+    // Route::get('/add/post', [DashboardController::class, 'add'])->name('add-post');
 });
