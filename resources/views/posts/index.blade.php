@@ -73,23 +73,25 @@
 @section('content')
 
 <div class="container col-md-6">
-    <div class="container col-md-6 mb-4">
-        <div class="card shadow-sm">
-            <div class="card-body d-flex align-items-center">
-                <!-- Avatar -->
-                <div class="avatar avatar-l me-3">
-                    <img src="path_to_avatar_image" class="avatar avatar-l rounded-circle" alt="User Avatar">
-                </div>
-                <!-- Post Input -->
-                <input class="form-control form-control-lg" type="text" placeholder="Start a post" aria-label="Start a post">
-            </div>
-            <div class="card-footer d-flex justify-content-around">
-                <button type="button" class="btn btn-light text-primary"><i class="ti ti-camera"></i> Media</button>
-                <button type="button" class="btn btn-light text-purple"><i class="ti ti-briefcase"></i> Job</button>
-                <button type="button" class="btn btn-light text-warning"><i class="ti ti-file"></i> Write article</button>
-            </div>
+    <div class="d-flex align-items-center mb-3">
+        <!-- Avatar -->
+        <div class="avatar avatar-l me-2">
+            <span class="avatar-initial rounded-circle bg-info">pi</span>
         </div>
+        <!-- Label for Name -->
+        <label for="defaultFormControlInput" class="form-label mb-0">Name</label>
     </div>
+    
+    <div class="col-md-8 mb-3 card">
+        <input
+          type="text"
+          class="form-control"
+          id="defaultFormControlInput"
+          placeholder="Share post"
+          aria-describedby="defaultFormControlHelp"
+          readonly>
+    </div>
+    
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex align-items-center">
