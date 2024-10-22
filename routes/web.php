@@ -1,11 +1,19 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\authenticate\AuthLogin;
 use App\Http\Controllers\Auth\LoginRegistrationController;
 use App\Http\Controllers\Dashboard\DashboardController;
+
+// Pages Controller
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\EngagementController;
+use App\Http\Controllers\LikesController;
+use App\Http\Controllers\CommentsController;
 
 date_default_timezone_set('Asia/Kolkata');
 Route::get('/refresh', function () {
@@ -31,6 +39,21 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard-blank');
     Route::get('/dashboard', [DashboardController::class, 'crm'])->name('dashboard-crm');
 
+
+    // Posts
+    Route::resource('posts', PostsController::class);
+
+    // Community
+    Route::resource('community', CommunityController::class);
+
+    // Engagement
+    Route::resource('engagement', EngagementController::class);
+
+    // Likes
+    Route::resource('likes', LikesController::class);
+
+    // Comments
+    Route::resource('comments', CommentsController::class);
 
     Route::get('/view/profile', [DashboardController::class, 'view'])->name('view-profile');
     Route::get('/add/post', [DashboardController::class, 'add'])->name('add-post');
