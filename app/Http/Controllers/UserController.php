@@ -60,34 +60,19 @@ class UserController extends Controller
      */
     public function changePassword(Request $request, string $id)
     {
-        // $request->validate([
-        //     'newPassword' => 'required|min:8|regex:/[A-Z]/|regex:/[!@#$%^&*]/',
-        //     'confirmPassword' => 'required|same:newPassword',
-        // ]);
-
-        // // Perform the password update (for demonstration, assuming the user is authenticated)
-        // $user = User::find($id);
-        // $user->password = Hash::make($request->input('password'));
-        // $user->save();
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => 'Password changed successfully!'
-        // ]);
 
         $request->validate([
-            'newPassword' => 'required|min:8|regex:/[A-Z]/|regex:/[!@#$%^&*]/',
-            'confirmPassword' => 'required|same:newPassword',
+            'newPassword' => 'required|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[!@#$%^&*]/',
         ]);
 
         // Find the user by ID
-        $user = User::find($id);
-        if (!$user) {
-            return redirect()->back()->with('error', 'User not found.');
-        }
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $password = Hash::make($request->newPassword);
 
         // Update the user's password
-        $user->password = Hash::make($request->newPassword);
+        $user->password = $password;
+
         $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully!');

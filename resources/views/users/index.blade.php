@@ -175,7 +175,8 @@
             <div class="card mb-4">
                 <h5 class="card-header">Change Password</h5>
                 <div class="card-body">
-                    <form id="formChangePassword" action="{{ route('password.change', ['id' => $user->id]) }}" method="POST">
+            
+                    <form id="formChangePassword" action="{{ url('/change-password/{id}') }}" method="POST">
                         @csrf
                         <div class="alert alert-warning" role="alert">
                             <h5 class="alert-heading mb-2">Ensure that these requirements are met</h5>
@@ -205,13 +206,6 @@
                             </div>
                         </div>
                     </form>
-                    @if (session('error'))
-                    <div class="alert alert-danger mt-2">{{ session('error') }}</div>
-                    @endif
-
-                    @if (session('success'))
-                    <div class="alert alert-success mt-2">{{ session('success') }}</div>
-                    @endif
                 </div>
             </div>
             <!-- Connected Communities -->
@@ -276,52 +270,4 @@
         </div>
     </div>
 </div>
-<!-- <script>
-    $('#formChangePassword').on('submit', function(e) {
-        e.preventDefault();
-
-        let newPassword = $('#newPassword').val();
-        let confirmPassword = $('#confirmPassword').val();
-        let errorMessages = [];
-
-        // Password validation: Minimum 8 characters, 1 uppercase letter, 1 symbol
-        let passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-
-        if (!passwordPattern.test(newPassword)) {
-            errorMessages.push("Password must be at least 8 characters long, contain 1 uppercase letter, and 1 symbol.");
-        }
-
-        if (newPassword !== confirmPassword) {
-            errorMessages.push("New password and confirm password do not match.");
-        }
-
-        if (errorMessages.length > 0) {
-            $('#errorMessages').html(errorMessages.join('<br>')).show();
-            $('#successMessage').hide();
-        } else {
-            $('#errorMessages').hide();
-
-            // AJAX request
-            $.ajax({
-                url: '/change-password/{{ $user->id }}', // Laravel route
-                type: 'POST',
-                data: {
-                    newPassword: newPassword,
-                    confirmPassword: confirmPassword,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $('#successMessage').text(response.message).show();
-                    } else {
-                        $('#errorMessages').html(response.message).show();
-                    }
-                },
-                error: function(xhr) {
-                    $('#errorMessages').html("An error occurred. Please try again.").show();
-                }
-            });
-        }
-    });
-</script> -->
 @endsection
