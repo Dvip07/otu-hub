@@ -54,14 +54,10 @@
 @section('content')
 
 <div class="content-wrapper">
-
     <!-- Header -->
     <div class="row">
         <div class="col-12">
-            <div class="card mb-4">
-                <div class="user-profile-header-banner">
-                    <img src="../../assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top" />
-                </div>
+            <div class="card mb-4 mt-4">
                 <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                     <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
                         <img src="../../assets/img/avatars/14.png" alt="user image"
@@ -71,16 +67,12 @@
                         <div
                             class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                             <div class="user-profile-info">
-                                <h4>John Doe</h4>
+                                <h4>{{$users->name}}</h4>
                                 <ul
                                     class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+                                    
                                     <li class="list-inline-item d-flex gap-1">
-                                        <i class="ti ti-color-swatch"></i> UX Designer
-                                    </li>
-                                    <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Vatican City
-                                    </li>
-                                    <li class="list-inline-item d-flex gap-1">
-                                        <i class="ti ti-calendar"></i> Joined April 2021
+                                        <i class="ti ti-calendar"></i> {{$users->created_at}}
                                     </li>
                                 </ul>
                             </div>
@@ -112,7 +104,7 @@
                             <span class="badge bg-label-primary p-2 rounded"><i class="ti ti-checkbox ti-sm"></i></span>
                             <div>
                                 <p class="mb-0 fw-medium">1.23k</p>
-                                <small>Tasks Done</small>
+                                <small>Total Post</small>
                             </div>
                         </div>
                         <div class="d-flex align-items-start mt-3 gap-2">
@@ -120,20 +112,16 @@
                                     class="ti ti-briefcase ti-sm"></i></span>
                             <div>
                                 <p class="mb-0 fw-medium">568</p>
-                                <small>Projects Done</small>
+                                <small>Total Community</small>
                             </div>
                         </div>
                     </div>
                     <h5 class="mt-4 small text-uppercase text-muted">Details</h5>
                     <div class="info-container">
                         <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <span class="fw-medium me-1">Username:</span>
-                                <span>violet.dev</span>
-                            </li>
                             <li class="mb-2 pt-1">
                                 <span class="fw-medium me-1">Email:</span>
-                                <span>vafgot@vultukir.org</span>
+                                <span>{{$users->email}}</span>
                             </li>
                             <li class="mb-2 pt-1">
                                 <span class="fw-medium me-1">Status:</span>
@@ -141,23 +129,7 @@
                             </li>
                             <li class="mb-2 pt-1">
                                 <span class="fw-medium me-1">Role:</span>
-                                <span>Author</span>
-                            </li>
-                            <li class="mb-2 pt-1">
-                                <span class="fw-medium me-1">Tax id:</span>
-                                <span>Tax-8965</span>
-                            </li>
-                            <li class="mb-2 pt-1">
-                                <span class="fw-medium me-1">Contact:</span>
-                                <span>(123) 456-7890</span>
-                            </li>
-                            <li class="mb-2 pt-1">
-                                <span class="fw-medium me-1">Languages:</span>
-                                <span>French</span>
-                            </li>
-                            <li class="pt-1">
-                                <span class="fw-medium me-1">Country:</span>
-                                <span>England</span>
+                                <span>{{$users->role}}</span>
                             </li>
                         </ul>
                         <div class="d-flex justify-content-center">

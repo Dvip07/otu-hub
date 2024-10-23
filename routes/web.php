@@ -61,4 +61,6 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     // Route::get('/add/post', [DashboardController::class, 'add'])->name('add-post');
 
     Route::post('/change-password/{id}', [UserController::class, 'changePassword'])->name('password.change');
+
+    Route::post('/like-post', [LikesController::class, 'store'])->name('like.post');
 });

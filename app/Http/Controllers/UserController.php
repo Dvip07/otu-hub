@@ -51,7 +51,7 @@ class UserController extends Controller
         // $userId = Auth::user()->id;
 
         // $users = User::with('engagement')->where('id', $id)->get();
-        $users = User::where('id', $id)->get();
+        $users = User::where('id', $id)->first();
         return view('users.index', compact('users'));
     }
 

@@ -20,4 +20,9 @@ class Posts extends Model
     ]; 
 
     use HasFactory;
+
+    public function likes()
+    {
+        return $this->hasMany(Likes::class, 'post_id');
+    }
 }

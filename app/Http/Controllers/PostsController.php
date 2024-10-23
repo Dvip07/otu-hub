@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostsRequest;
 use App\Http\Requests\UpdatePostsRequest;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class PostsController extends Controller
 {
@@ -14,7 +15,13 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Posts::with(['likes' => function ($query) {
+            $query->where('user_id', Auth::id());
+        }])->get();
+        foreach ($posts as $post) {
+            $post->userHasLiked = $post->likes->isNotEmpty(); // Check if there are any likes by the current user
+        }
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -40,7 +47,6 @@ class PostsController extends Controller
         }
 
         $validatedData['user_id'] = Auth::id();
-        // dd($validatedData);
 
         $post = Posts::create($validatedData);
 
