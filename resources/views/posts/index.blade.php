@@ -74,28 +74,101 @@
 
 <div class="container col-md-6">
     <!--creat post in  view post section-->
-    <div class="col-md-12 card p-3">
-        <div class="row align-items-center">
-            <!-- Avatar Section -->
-            <div class="col-md-2 d-flex justify-content-center">
-                <div class="avatar avatar-l">
-                    <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
-                        pi
-                    </span>
+    <div class="container col-md-6">
+        <!-- Create Post in View Post Section -->
+        <div class="col-md-12 card p-3">
+            <div class="row align-items-center">
+                <!-- Avatar Section -->
+                <div class="col-md-2 d-flex justify-content-center">
+                    <div class="avatar avatar-l" style="width: 50px; height: 50px;">
+                        <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
+                            pi
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <!-- Input Field Section -->
-            <div class="col-md-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="defaultFormControlInput"
-                  placeholder="Share post"
-                  aria-describedby="defaultFormControlHelp"
-                  readonly>
+                <!-- Input Field Section with Modal Trigger -->
+                <div class="col-md-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="defaultFormControlInput"
+                      placeholder="Share post"
+                      aria-describedby="defaultFormControlHelp"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editPostModal"
+                      readonly>
+                </div>
             </div>
         </div>
     </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="content-wrapper">
+                <!-- Header -->
+                <div class="row justify-content-center">
+                  <div class="col-md-8">
+                    <div class="card mb-2 p-3">
+                      <h5 class="card-header text-center">Create a Post</h5>
+                      <div class="card-body">
+                          <form method="post" action="{{ url('/posts') }}" enctype="multipart/form-data">
+                              @csrf
+                          <!-- Post Title -->
+                          <div class="mb-3">
+                            <label for="postTitle" class="form-label">Post Title</label>
+                            <input type="text" class="form-control" id="postTitle" name="text" placeholder="What's on your mind?" />
+                          </div>
+                          
+                          <!-- Post Description -->
+                          <div class="mb-3">
+                            <label class="form-label" for="postDescription">Post Description</label>
+                            <textarea id="postDescription" class="form-control" rows="4" name="desc" maxlength="255" placeholder="Share your thoughts..."></textarea>
+                            <small class="text-muted">Max 255 characters.</small>
+                          </div>
+                          
+                          <!-- File Upload -->
+                          <div class="mb-3">
+                            <label for="fileUpload" class="form-label">Upload Media</label>
+                            <div class="file-upload-container">
+                              <div class="input-group">
+                                <label class="input-group-text" for="inputGroupFile01"><i class="bx bx-upload"></i></label>
+                                <input type="file" class="form-control" id="inputGroupFile01" name="media" />
+                              </div>
+                              <img id="filePreview" class="file-preview" style="display: none;" alt="File Preview" />
+                            </div>
+                            <small class="text-muted">Supported formats: jpg, png, gif.</small>
+                          </div>
+              
+                          <!-- URL Links -->
+                          <div class="mb-3">
+                            <label for="linkInput" class="form-label">Add Links</label>
+                            <div class="input-group">
+                              <span class="input-group-text" id="basic-addon14">https://example.com/</span>
+                              <input type="text" class="form-control" name="links" id="linkInput" placeholder="Add URL" aria-describedby="basic-addon14" />
+                            </div>
+                          </div>
+                            
+                          <!-- Submit Button -->
+                          <div class="mt-3 d-flex justify-content-between">
+                            <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                            <button type="submit" class="btn btn-success">Publish</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
     
 
     
