@@ -167,11 +167,7 @@
       </div>
     </div>
     
-    
-    
-    
-
-    
+    <!-- Post Section -->
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex align-items-center">
