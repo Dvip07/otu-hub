@@ -74,13 +74,13 @@
 
 <div class="container col-md-6">
     <!--creat post in  view post section-->
-    <div class="container col-md-6">
+    <div class=" col-md-12 mb-3">
         <!-- Create Post in View Post Section -->
         <div class="col-md-12 card p-3">
             <div class="row align-items-center">
                 <!-- Avatar Section -->
                 <div class="col-md-2 d-flex justify-content-center">
-                    <div class="avatar avatar-l" style="width: 50px; height: 50px;">
+                    <div class="avatar avatar-m" style="width: 50px; height: 50px;">
                         <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
                             pi
                         </span>
@@ -103,19 +103,22 @@
     </div>
     
     <!-- Modal -->
+
     <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="content-wrapper">
-                <!-- Header -->
+        <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+          <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      
+              <!-- Begin New Content -->
+              <div class="content-wrapper">
                 <div class="row justify-content-center">
                   <div class="col-md-8">
-                    <div class="card mb-2 p-3">
+                    <div class=>
                       <h5 class="card-header text-center">Create a Post</h5>
                       <div class="card-body">
-                          <form method="post" action="{{ url('/posts') }}" enctype="multipart/form-data">
-                              @csrf
+                        <form method="post" action="{{ url('/posts') }}" enctype="multipart/form-data">
+                          @csrf
                           <!-- Post Title -->
                           <div class="mb-3">
                             <label for="postTitle" class="form-label">Post Title</label>
@@ -141,7 +144,7 @@
                             </div>
                             <small class="text-muted">Supported formats: jpg, png, gif.</small>
                           </div>
-              
+      
                           <!-- URL Links -->
                           <div class="mb-3">
                             <label for="linkInput" class="form-label">Add Links</label>
@@ -162,10 +165,13 @@
                   </div>
                 </div>
               </div>
+              <!-- End New Content -->
+              
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      
     
     <!-- Post Section -->
     <div class="card mb-3">
@@ -199,7 +205,7 @@
                         </button>
                     </div>
                     <div class="col-md-6 text-end">
-                        <button type="button" class="btn rounded-pill btn-secondary" onclick="openComment()">
+                        <button type="button" class="btn rounded-pill btn-secondary">
                             <i class="ti ti-message"></i> Comment
                         </button>
                     </div>
@@ -207,7 +213,7 @@
             </div>
 
             <!-- Example Comments Section -->
-            <div id="commentSection" class="comments fade-out" style="display: none;">
+            <div class="comments">
                 <div class="comment d-flex">
                     <img class="avatar" src="../../assets/img/avatars/1.png" alt="User Avatar" />
                     <div>
@@ -239,6 +245,10 @@
                     class="form-control message-input border-0 me-3 shadow-none"
                     placeholder="Type your message here" />
                   <div class="message-actions d-flex align-items-center">
+                    <label for="attach-doc" class="form-label mb-0">
+                      <i class="ti ti-photo ti-sm cursor-pointer mx-3"></i>
+                      <input type="file" id="attach-doc" hidden />
+                    </label>
                     <button class="btn btn-primary d-flex send-msg-btn">
                       <i class="ti ti-send me-md-1 me-0"></i>
                     </button>
@@ -249,21 +259,5 @@
     </div>
 </div>
 
-<script>
-    function openComment() {
-        const commentSection = document.getElementById("commentSection");
-        const commentForm = document.getElementById("commentForm");
-
-        // Toggle visibility
-        if (commentSection.style.display === "none") {
-            commentSection.style.display = "block";
-            commentForm.style.display = "block";
-        } else {
-            commentSection.style.display = "none";
-            commentForm.style.display = "none";
-        }
-    }
-</script>
-
-
 @endsection
+
