@@ -81,7 +81,7 @@
             <div class="row align-items-center">
                 <!-- Avatar Section -->
                 <div class="col-md-2 d-flex justify-content-center">
-                    <div class="avatar avatar-l" style="width: 50px; height: 50px;">
+                    <div class="avatar avatar-m" style="width: 50px; height: 50px;">
                         <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
                             pi
                         </span>
@@ -103,6 +103,7 @@
         </div>
     </div>
     <!-- Modal -->
+
     <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -204,7 +205,7 @@
                         </button>
                     </div>
                     <div class="col-md-6 text-end">
-                        <button type="button" class="btn rounded-pill btn-secondary" onclick="openComment()">
+                        <button type="button" class="btn rounded-pill btn-secondary">
                             <i class="ti ti-message"></i> Comment
                         </button>
                     </div>
@@ -212,7 +213,7 @@
             </div>
 
             <!-- Example Comments Section -->
-            <div id="commentSection" class="comments fade-out" style="display: none;">
+            <div class="comments">
                 <div class="comment d-flex">
                     <img class="avatar" src="../../assets/img/avatars/1.png" alt="User Avatar" />
                     <div>
@@ -256,9 +257,6 @@
 </div>
 
 <script>
-    function openComment() {
-        const commentSection = document.getElementById("commentSection");
-        const commentForm = document.getElementById("commentForm");
 
         // Toggle visibility
         if (commentSection.style.display === "none") {
@@ -268,7 +266,6 @@
             commentSection.style.display = "none";
             commentForm.style.display = "none";
         }
-    }
 
     function likeFeature(postId,btnid) {
         $.ajax({
