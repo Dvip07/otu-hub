@@ -80,11 +80,11 @@
                 <input type="text" class="form-control" name="links" id="linkInput" placeholder="Add URL" aria-describedby="basic-addon14" />
               </div>
             </div>
-            
+              
             <!-- Submit Button -->
             <div class="mt-3 d-flex justify-content-between">
               <button type="reset" class="btn btn-outline-secondary">Clear</button>
-              <button type="submit" class="btn btn-success">Post</button>
+              <button type="submit" class="btn btn-success">Publish</button>
             </div>
           </form>
         </div>
