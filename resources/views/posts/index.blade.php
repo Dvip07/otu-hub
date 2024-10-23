@@ -74,28 +74,56 @@
 
 <div class="container col-md-6">
     <!--creat post in  view post section-->
-    <div class="col-md-12 card p-3">
-        <div class="row align-items-center">
-            <!-- Avatar Section -->
-            <div class="col-md-2 d-flex justify-content-center">
-                <div class="avatar avatar-l">
-                    <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
-                        pi
-                    </span>
+    <div class="container col-md-6">
+        <!-- Create Post in View Post Section -->
+        <div class="col-md-12 card p-3">
+            <div class="row align-items-center">
+                <!-- Avatar Section -->
+                <div class="col-md-2 d-flex justify-content-center">
+                    <div class="avatar avatar-l" style="width: 50px; height: 50px;">
+                        <span class="avatar-initial rounded-circle bg-info d-flex justify-content-center align-items-center" style="width: 100%; height: 100%; font-size: 18px;">
+                            pi
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <!-- Input Field Section -->
-            <div class="col-md-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="defaultFormControlInput"
-                  placeholder="Share post"
-                  aria-describedby="defaultFormControlHelp"
-                  readonly>
+                <!-- Input Field Section with Modal Trigger -->
+                <div class="col-md-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="defaultFormControlInput"
+                      placeholder="Share post"
+                      aria-describedby="defaultFormControlHelp"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editPostModal"
+                      readonly>
+                </div>
             </div>
         </div>
     </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editPostModalLabel">Create a Post</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Content of the modal (e.g., a form to create a post) -->
+            <textarea class="form-control" rows="5" placeholder="Write something..."></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
     
 
     
