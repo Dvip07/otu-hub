@@ -90,6 +90,11 @@
                             <div>Create Post</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="{{ route('create-community') }}" class="menu-link">
+                            <div>Create Community</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
         @endif
