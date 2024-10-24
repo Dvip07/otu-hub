@@ -6,6 +6,8 @@ use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
 use App\Models\Community;
 
+
+
 class CommunityController extends Controller
 {
     /**
@@ -27,10 +29,16 @@ class CommunityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCommunityRequest $request)
-    {
-        //
-    }
+    // public function store(StoreCommunityRequest $request)
+    // {
+    //     $validated = $request->validated();
+    //     $community = Community::create($validated);
+
+    //     return redirect()->route('create-community');
+    // }
+
+   
+
 
     /**
      * Display the specified resource.
