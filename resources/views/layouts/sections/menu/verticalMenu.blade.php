@@ -73,17 +73,17 @@
 
 
 
-        @if (Auth::user()->role == 'Super Admin')
+        {{-- @if (Auth::user()->role == 'Super Admin')
             <li class="menu-item ">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-mailbox"></i>
                     <div>Post</div>
                 </a>
                 <ul class="menu-sub">
-                    {{-- <li class="menu-item">
+                    <li class="menu-item">
                         <a href="{{ route('posts.index') }}" class="menu-link">
                             <div>View Posts</div>
-                        </a> --}}
+                        </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('posts.create') }}" class="menu-link">
@@ -97,7 +97,7 @@
                     </li>
                 </ul>
             </li>
-        @endif
+        @endif --}}
 
         
 
@@ -128,7 +128,7 @@
         @endif --}}
 
             @if (Auth::user()->role == 'Super Admin' || Auth::user()->role == 'Student' || Auth::user()->role == 'Faculty')
-                <li class="menu-item">
+                <li class="menu-item open">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons ti ti-layout-kanban"></i>
                         {{-- <div class="avatar avatar-xs me-2">
@@ -137,24 +137,24 @@
                         <div>Communities</div>
                     </a>
                     <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="" class="menu-link">
+                        <li>
+                            <a href="" class="menu-link" style="padding-left: 1rem !important">
                                 <div class="avatar avatar-xs me-2">
                                     <img src="../../assets/img/avatars/1.png" alt="Avatar" />
                                 </div>
                                 <div>Add</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="" class="menu-link">
+                        <li>
+                            <a href="" class="menu-link" style="padding-left: 1rem !important">
                                 <div class="avatar avatar-xs me-2">
                                     <img src="../../assets/img/avatars/1.png" alt="Avatar" />
                                 </div>
                                 <div>List</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="" class="menu-link">
+                        <li>
+                            <a href="" class="menu-link" style="padding-left: 1rem !important">
                                 <div class="avatar avatar-xs me-2">
                                     <img src="../../assets/img/avatars/1.png" alt="Avatar" />
                                 </div>
