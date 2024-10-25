@@ -93,7 +93,7 @@
         @endif --}}
 
         <li class="nav-item dropdown me-2 me-xl-0">
-            <a class="nav-link dropdown-toggle align-middle" data-bs-toggle="dropdown">
+            <a class="nav-link align-middle" data-bs-toggle="dropdown">
                 <button type="button" class="btn btn-primary waves-effect waves-light align-middle">
                     <i class='ti ti-md ti-plus me-2'></i>
                     <span>Create</span>

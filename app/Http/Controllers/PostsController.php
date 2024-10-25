@@ -15,9 +15,11 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Posts::with(['likes' => function ($query) {
-            $query->where('user_id', Auth::id());
-        }])->get();
+        $posts = Posts::with([
+            'likes' => function ($query) {
+                $query->where('user_id', Auth::id());
+            }
+        ])->get();
         foreach ($posts as $post) {
             $post->userHasLiked = $post->likes->isNotEmpty(); // Check if there are any likes by the current user
         }
@@ -38,25 +40,38 @@ class PostsController extends Controller
     public function store(StorePostsRequest $request)
     {
         $validatedData = $request->validated();
-
+    
         // Handle file upload
         if ($request->hasFile('media')) {
             $file = $request->file('media');
-            $filePath = $file->store('uploads', 'public');
-            $validatedData['media'] = $filePath;
-        }
-
-        $validatedData['user_id'] = Auth::id();
-
-        $post = Posts::create($validatedData);
-
-        if ($post) {
-            // Redirect to a success page or show a success message
+            $timestamp = now()->format('YmdHis');
+    
+            // Temporarily save the post to get the ID
+            $post = new Posts($validatedData);
+            $post->user_id = Auth::id();
+            $post->save();
+    
+            // Create a custom file name using post_id and timestamp
+            $fileName = 'post_' . $post->id . '_' . $timestamp . '.' . $file->getClientOriginalExtension();
+    
+            // Move the file directly into the public directory
+            $file->move(public_path('uploads'), $fileName);
+    
+            // Save the relative path to the database
+            $post->update(['media' => 'uploads/' . $fileName]);
+    
             return redirect()->route('posts.index')->with('success', 'Post created successfully!');
         } else {
-            // Handle errors and redirect back to the form with error messages
             return back()->withErrors($validatedData)->withInput();
         }
+    }
+    
+
+
+    public function viewPost($id)
+    {
+        $post = Posts::with('comments')->find($id);
+        return view('posts.viewPost', compact('post'));
     }
 
     /**
