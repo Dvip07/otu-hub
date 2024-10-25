@@ -37,8 +37,8 @@ Route::get('/authenticate/login', [AuthLogin::class, 'login'])->name('authentica
 Route::get('/authenticate/register', [AuthLogin::class, 'register'])->name('authenticate-register');
 
 Route::middleware([EnsureTokenIsValid::class])->group(function () {
+    // Route::get('/', [PostsController::class, 'index'])->name('view-post');
     Route::get('/', [PostsController::class, 'index'])->name('view-post');
-    Route::get('/dashboard', [DashboardController::class, 'crm'])->name('dashboard-crm');
     Route::get('/create/community', [DashboardController::class, 'createCommunity'])->name('create-community');
     Route::post('/save/community', [DashboardController::class, 'save'])->name('save-community');
 
@@ -55,6 +55,7 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::resource('engagement', EngagementController::class);
 
     // Likes
+    Route::post('/like-post', [LikesController::class, 'store'])->name('like.post');
     Route::resource('likes', LikesController::class);
 
     // Comments
@@ -64,5 +65,5 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
 
     Route::post('/change-password/{id}', [UserController::class, 'changePassword'])->name('password.change');
 
-    Route::post('/like-post', [LikesController::class, 'store'])->name('like.post');
+    
 });

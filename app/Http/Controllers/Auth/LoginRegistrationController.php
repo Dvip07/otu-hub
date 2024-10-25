@@ -49,11 +49,11 @@ class LoginRegistrationController extends Controller
             if (Auth::attempt($credentials, $remember)) {
                 if (Auth::viaRemember()) {
                     $request->session()->regenerate();
-                    return redirect()->route('dashboard-crm')
+                    return redirect()->route('view-post')
                         ->withSuccess('You have successfully logged in!');
                 } else {
                     $request->session()->regenerate();
-                    return redirect()->url('/')
+                    return redirect()->route('view-post')
                         ->withSuccess('You have successfully logged in!');
                 }
             }
