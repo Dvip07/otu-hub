@@ -23,7 +23,7 @@ class CommunityController extends Controller
      */
     public function create()
     {
-        //
+        return view('communities.create-community');
     }
 
     /**

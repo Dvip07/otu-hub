@@ -106,7 +106,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="{{ route('create-community') }}">
+                    <a class="dropdown-item" href="{{ route('community.create') }}">
                         <span class="align-middle">Community</span>
                     </a>
                 </li>
@@ -213,7 +213,7 @@
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
                     <a class="dropdown-item"
-                        href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
+                        href="{{ route('view-profile', Auth::user()->id) }}">
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
                                 <div class="avatar avatar-online">

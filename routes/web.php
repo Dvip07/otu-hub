@@ -39,7 +39,7 @@ Route::get('/authenticate/register', [AuthLogin::class, 'register'])->name('auth
 Route::middleware([EnsureTokenIsValid::class])->group(function () {
     // Route::get('/', [PostsController::class, 'index'])->name('view-post');
     Route::get('/', [PostsController::class, 'index'])->name('view-post');
-    Route::get('/create/community', [DashboardController::class, 'createCommunity'])->name('create-community');
+    // Route::get('/create/community', [c::class, 'createCommunity'])->name('create-community');
     Route::post('/save/community', [DashboardController::class, 'save'])->name('save-community');
 
     // Profile
