@@ -96,12 +96,13 @@
             </div>
 
             <p class="card-text mt-3">
-                This is a wider card with supporting text below as a natural lead-in to additional content. This
-                content is a little bit longer.
+                {{$post->desc}}
             </p>
 
             <small class="text-muted">Last updated 3 mins ago</small>
-            <img class="card-img-bottom mb-3" src="../../assets/img/elements/1.jpg" alt="Card image cap" />
+            @if($post->media != NULL)
+            <img class="card-img-bottom mb-3" src="{{ asset('storage/' . $post->media) }}" alt="Card image cap" />
+            @endif
             <div class="mb-4 col-md-12">
                 <div class="row">
                     <div class="col-md-6">
@@ -166,17 +167,16 @@
 </div>
 
 <script>
+    // Toggle visibility
+    if (commentSection.style.display === "none") {
+        commentSection.style.display = "block";
+        commentForm.style.display = "block";
+    } else {
+        commentSection.style.display = "none";
+        commentForm.style.display = "none";
+    }
 
-        // Toggle visibility
-        if (commentSection.style.display === "none") {
-            commentSection.style.display = "block";
-            commentForm.style.display = "block";
-        } else {
-            commentSection.style.display = "none";
-            commentForm.style.display = "none";
-        }
-
-    function likeFeature(postId,btnid) {
+    function likeFeature(postId, btnid) {
         $.ajax({
             url: "{{ route('like.post') }}",
             type: 'POST',
@@ -186,9 +186,9 @@
             },
             success: function(response) {
                 if (response.status === 'liked') {
-                    $('#'+ btnid + ' i').removeClass('fa-regular fa-star').addClass('fa-solid fa-star');
+                    $('#' + btnid + ' i').removeClass('fa-regular fa-star').addClass('fa-solid fa-star');
                 } else if (response.status === 'already_liked') {
-                    $('#'+ btnid + ' i').removeClass('fa-solid fa-star').addClass('fa-regular fa-star');
+                    $('#' + btnid + ' i').removeClass('fa-solid fa-star').addClass('fa-regular fa-star');
                 } else if (response.status === '500') {
                     alert(response.message);
                 }
