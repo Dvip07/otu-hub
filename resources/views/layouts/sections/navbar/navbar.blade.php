@@ -43,7 +43,7 @@
 
 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
-    @if (!isset($menuHorizontal))
+    {{-- @if (!isset($menuHorizontal))
         <!-- Search -->
         <div class="navbar-nav align-items-center">
             <div class="nav-item navbar-search-wrapper mb-0">
@@ -54,9 +54,9 @@
             </div>
         </div>
         <!-- /Search -->
-    @endif
+    @endif --}}
     <ul class="navbar-nav flex-row align-items-center ms-auto">
-        @if (isset($menuHorizontal))
+        {{-- @if (isset($menuHorizontal))
             <!-- Search -->
             <li class="nav-item navbar-search-wrapper me-2 me-xl-0">
                 <a class="nav-link search-toggler" href="javascript:void(0);">
@@ -64,8 +64,8 @@
                 </a>
             </li>
             <!-- /Search -->
-        @endif
-        @if ($configData['hasCustomizer'] == true)
+        @endif --}}
+        {{-- @if ($configData['hasCustomizer'] == true)
             <!-- Style Switcher -->
             <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -90,7 +90,28 @@
                 </ul>
             </li>
             <!--/ Style Switcher -->
-        @endif
+        @endif --}}
+
+        <li class="nav-item dropdown me-2 me-xl-0">
+            <a class="nav-link dropdown-toggle align-middle" data-bs-toggle="dropdown">
+                <button type="button" class="btn btn-primary waves-effect waves-light align-middle">
+                    <i class='ti ti-md ti-plus me-2'></i>
+                    <span>Create</span>
+                </button>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+                <li>
+                    <a class="dropdown-item" href="{{ route('posts.create') }}">
+                        <span class="align-middle">Post</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('create-community') }}">
+                        <span class="align-middle">Community</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         <!-- Quick links  -->
         @if (Auth::user()->role == 'admin')
@@ -218,9 +239,9 @@
                 </li>
                 <li>
                     @php
-                    use Illuminate\Support\Facades\Auth;
+                        use Illuminate\Support\Facades\Auth;
                     @endphp
-                    <a class="dropdown-item" href="{{ route('view-profile', Auth::user()->id)}}">
+                    <a class="dropdown-item" href="{{ route('view-profile', Auth::user()->id) }}">
                         <i class="ti ti-user-check me-2 ti-sm"></i>
                         <span class="align-middle">My Profile</span>
                     </a>

@@ -213,7 +213,7 @@
             </div>
 
             <!-- Example Comments Section -->
-            {{-- <div class="comments">
+            <div class="comments">
                 <div class="comment d-flex">
                     <img class="avatar" src="../../assets/img/avatars/1.png" alt="User Avatar" />
                     <div>
@@ -250,7 +250,7 @@
                         </button>
                     </div>
                 </form>
-            </div> --}}
+            </div>
         </div>
     </div>
     @endforeach
