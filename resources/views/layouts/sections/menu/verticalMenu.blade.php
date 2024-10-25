@@ -63,7 +63,7 @@
 
         @if (Auth::user()->role == 'Super Admin')
             <li class="menu-item ">
-                <a href="" class="menu-link">
+                <a href="{{ url('/')}}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-layout"></i>
                     <div>Home</div>
                 </a>
@@ -80,10 +80,10 @@
                     <div>Post</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="{{ route('posts.index') }}" class="menu-link">
                             <div>View Posts</div>
-                        </a>
+                        </a> --}}
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('posts.create') }}" class="menu-link">

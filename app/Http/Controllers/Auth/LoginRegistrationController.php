@@ -53,7 +53,7 @@ class LoginRegistrationController extends Controller
                         ->withSuccess('You have successfully logged in!');
                 } else {
                     $request->session()->regenerate();
-                    return redirect()->route('dashboard-blank')
+                    return redirect()->url('/')
                         ->withSuccess('You have successfully logged in!');
                 }
             }

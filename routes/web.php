@@ -37,7 +37,7 @@ Route::get('/authenticate/login', [AuthLogin::class, 'login'])->name('authentica
 Route::get('/authenticate/register', [AuthLogin::class, 'register'])->name('authenticate-register');
 
 Route::middleware([EnsureTokenIsValid::class])->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard-blank');
+    Route::get('/', [PostsController::class, 'index'])->name('view-post');
     Route::get('/dashboard', [DashboardController::class, 'crm'])->name('dashboard-crm');
     Route::get('/create/community', [DashboardController::class, 'createCommunity'])->name('create-community');
     Route::post('/save/community', [DashboardController::class, 'save'])->name('save-community');
