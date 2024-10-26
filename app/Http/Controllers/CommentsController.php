@@ -14,7 +14,9 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+        // $comments = Comments::with('users', 'posts');
+        // dd($comments);
+        // return view('posts.viewPost', compact('comments'));
     }
 
     /**

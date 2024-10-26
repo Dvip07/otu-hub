@@ -129,16 +129,27 @@
                     </div>
 
                     <!-- Example Comments Section -->
+
+                    @foreach($comments as $comment)
                     <div class="comments">
                         <div class="comment d-flex">
-                            <img class="avatar" src="../../assets/img/avatars/1.png" alt="User Avatar" />
+                            @php
+                            $avatar = strtoupper(substr($comment->user->name, 0, 2));
+                            @endphp
+                            <div class="avatar avatar-l me-2">
+                                <span class="avatar-initial rounded-circle bg-info">{{$avatar}}</span>
+                            </div>
+                            {{-- <img class="avatar" src="{{$avatar}}" alt="User Avatar" /> --}}
                             <div>
-                                <div class="comment-text">This is an amazing post! Great job!</div>
-                                <small class="text-muted">User1 - 5 mins ago</small>
+                                <div class="comment-text">{{$comment->comment}}</div>
+                                @php
+                                    $commentTime = \Carbon\Carbon::parse($comment->updated_at)->diffForHumans();
+                                @endphp
+                                <small class="text-muted">{{$comment->user->name ?? 'User Name'}} - {{ $commentTime }}</small>
                             </div>
                         </div>
 
-                        <div class="comment d-flex">
+                        {{-- <div class="comment d-flex">
                             <img class="avatar" src="../../assets/img/avatars/2.png" alt="User Avatar" />
                             <div>
                                 <div class="comment-text">I love the content you've shared here!</div>
@@ -152,8 +163,9 @@
                                 <div class="comment-text">Keep it up, looking forward to more posts like this.</div>
                                 <small class="text-muted">User3 - 15 mins ago</small>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
+                    @endforeach
 
                     <div class="chat-history-footer shadow-sm">
                         <form class="form-send-message d-flex justify-content-between align-items-center" method="POST"

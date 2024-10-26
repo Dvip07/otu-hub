@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostsRequest;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use App\Models\Comments;
 
 class PostsController extends Controller
 {
@@ -71,7 +72,8 @@ class PostsController extends Controller
     public function viewPost($id)
     {
         $post = Posts::with('comments')->find($id);
-        return view('posts.viewPost', compact('post'));
+        $comments = Comments::with('user', 'post')->where('post_id', $id)->get();
+        return view('posts.viewPost', compact('post', 'comments'));
     }
 
     /**

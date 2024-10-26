@@ -128,46 +128,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Example Comments Section -->
-                    {{-- <div class="comments">
-                <div class="comment d-flex">
-                    <img class="avatar" src="../../assets/img/avatars/1.png" alt="User Avatar" />
-                    <div>
-                        <div class="comment-text">This is an amazing post! Great job!</div>
-                        <small class="text-muted">User1 - 5 mins ago</small>
-                    </div>
-                </div>
-
-                <div class="comment d-flex">
-                    <img class="avatar" src="../../assets/img/avatars/2.png" alt="User Avatar" />
-                    <div>
-                        <div class="comment-text">I love the content you've shared here!</div>
-                        <small class="text-muted">User2 - 10 mins ago</small>
-                    </div>
-                </div>
-
-                <div class="comment d-flex">
-                    <img class="avatar" src="../../assets/img/avatars/3.png" alt="User Avatar" />
-                    <div>
-                        <div class="comment-text">Keep it up, looking forward to more posts like this.</div>
-                        <small class="text-muted">User3 - 15 mins ago</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chat-history-footer shadow-sm">
-                <form class="form-send-message d-flex justify-content-between align-items-center">
-                    <input
-                        class="form-control message-input border-0 me-3 shadow-none"
-                        placeholder="Type your message here" />
-                    <div class="message-actions d-flex align-items-center">
-                        <button class="btn btn-primary d-flex send-msg-btn">
-                            <i class="ti ti-send me-md-1 me-0"></i>
-                        </button>
-                    </div>
-                </form>
-            </div> --}}
                 </div>
             </div>
         @endforeach
