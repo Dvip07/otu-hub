@@ -46,6 +46,7 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::get('/profile/{id}', [UserController::class, 'edit'])->name('view-profile');
 
     // Posts
+    Route::get('view/post/{id}', [PostsController::class, 'viewPost'])->name('viewSinglePost');
     Route::resource('posts', PostsController::class);
 
     // Community

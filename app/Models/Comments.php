@@ -16,6 +16,16 @@ class Comments extends Model
         'user_id',
         'comment',
     ];
-    
+
     use HasFactory;
+
+    public function post()
+    {
+        return $this->belongsTo(Posts::class, 'post_id');
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
