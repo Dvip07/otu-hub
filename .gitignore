@@ -21,3 +21,7 @@ yarn-error.log
 /.vscode
 /.zed
 .DS_Store
+neel/createPost.blade.php
+app/Http/Controllers/UserController.php
+resources/views/layouts/sections/menu/verticalMenu.blade.php
+resources/views/users/index.blade.php
