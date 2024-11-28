@@ -22,7 +22,7 @@ class LoginRegistrationController extends Controller
         User::create([
             'name' => $request->username,
             'email' => $request->email,
-            'role' => "Super Admin",
+            'role' => "Admin",
             'password' => Hash::make($request->password)
         ]);
 
