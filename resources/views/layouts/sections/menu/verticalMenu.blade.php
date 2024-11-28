@@ -61,82 +61,33 @@
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1 ps">
 
+
+        @php
+            $currentUrl = url()->current();
+            $homePage = url('/');
+            $usersList = route('users.index');
+            $communityView = route('community.index');
+        @endphp
+
         @if (Auth::user()->role == 'Super Admin')
-            <li class="menu-item ">
-                <a href="{{ url('/')}}" class="menu-link">
+            <li class="menu-item {{ $currentUrl == $homePage ? 'active' : '' }} ">
+                <a href="{{ $homePage }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-layout"></i>
                     <div>Home</div>
                 </a>
             </li>
         @endif
 
-
-
-
-        {{-- @if (Auth::user()->role == 'Super Admin')
-            <li class="menu-item ">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons ti ti-mailbox"></i>
-                    <div>Post</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="{{ route('posts.index') }}" class="menu-link">
-                            <div>View Posts</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ route('posts.create') }}" class="menu-link">
-                            <div>Create Post</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ route('create-community') }}" class="menu-link">
-                            <div>Create Community</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        @endif --}}
-
-        
-
-        {{-- @if (Auth::user()->role == 'Super Admin' || Auth::user()->role == 'Student' || Auth::user()->role == 'Faculty')
-            <li class="menu-item ">
+        @if (Auth::user()->role == 'Super Admin' || Auth::user()->role == 'Student' || Auth::user()->role == 'Faculty')
+            <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons ti ti-layout-kanban"></i>
-                    <div>Communities</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item ">
-                        <a href="" class="menu-link">
-                            <div>Add</div>
-                        </a>
-                    </li>
-                    <li class="menu-item ">
-                        <a href="" class="menu-link">
-                            <div>List</div>
-                        </a>
-                    </li>
-                    <li class="menu-item ">
-                        <a href="" class="menu-link">
-                            <div>Po Request List</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        @endif --}}
-
-            @if (Auth::user()->role == 'Super Admin' || Auth::user()->role == 'Student' || Auth::user()->role == 'Faculty')
-                <li class="menu-item open">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons ti ti-layout-kanban"></i>
-                        {{-- <div class="avatar avatar-xs me-2">
+                    {{-- <div class="avatar avatar-xs me-2">
                             <img src="../../assets/img/avatars/1.png" alt="Avatar" />
                         </div> --}}
-                        <div>Communities</div>
-                    </a>
-                    <ul class="menu-sub">
+                    <div>Communities</div>
+                </a>
+                {{-- <ul class="menu-sub">
                         <li>
                             <a href="" class="menu-link" style="padding-left: 1rem !important">
                                 <div class="avatar avatar-xs me-2">
@@ -161,18 +112,44 @@
                                 <div>Po Request List</div>
                             </a>
                         </li>
-                    </ul>
-                </li>
-            @endif
-        
+                    </ul> --}}
+
+                @php
+                    $communities = App\Models\Community::all();
+                @endphp
+                <ul class="menu-sub">
+                    @foreach ($communities as $community)
+                        <li>
+                            {{-- <a href="{{ route('community.show', ['id' => $community->id]) }}"
+                                class="menu-link {{ $currentUrl == route('community.show', ['id' => $community->id]) ? 'active' : '' }}"
+                                style="padding-left: 1rem !important"> --}}
+                            <a href="{{ route('community.show', $community) }}"
+                                class="menu-link {{ $currentUrl == route('community.show', $community) ? 'active' : '' }}"
+                                style="padding-left: 1rem !important">
+                                <div class="avatar avatar-xs me-2">
+                                    <img class="card-img-bottom mb-3" src="{{ asset($community->avatar) }}"
+                                        alt="Community Avatar">
+                                </div>
+                                <div>{{ $community->name }}</div>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+
+
+
+            </li>
+        @endif
+
 
         @if (Auth::user()->role == 'Super Admin')
-            {{-- <li class="menu-item ">
-                <a href="" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-truck"></i>
-                    <div>Warehouse</div>
+            <li class="menu-item {{ $currentUrl == $usersList ? 'active' : '' }}">
+                <a href="{{ $usersList }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-users"></i>
+                    <div>Users</div>
                 </a>
-            </li> --}}
+            </li>
         @endif
 
         @if (Auth::user()->role == 'Super Admin' || Auth::user()->role == 'warehouse')

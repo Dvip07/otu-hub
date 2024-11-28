@@ -102,7 +102,9 @@
 
             <small class="text-muted">Last updated 3 mins ago</small>
             @if ($post->media)
-            <img class="card-img-bottom mb-3" src="{{ asset('storage/' . $post->media) }}" alt="Post image">
+            {{-- <img class="card-img-bottom mb-3" src="{{ asset('public/' . $post->media) }}" alt="Post image"> --}}
+            <img class="card-img-bottom mb-3" src="{{ asset($post->media) }}" alt="Post image">
+
             @else
             @endif
             <div class="mb-4 col-md-12">

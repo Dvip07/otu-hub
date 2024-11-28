@@ -15,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users = User::with('engagement')->get();
-        // return view('users.index', compact('users'));
+        $users = User::get();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller
 
         // $users = User::with('engagement')->where('id', $id)->get();
         $users = User::where('id', $id)->first();
-        return view('users.index', compact('users'));
+        return view('users.edit', compact(var_name: 'users'));
     }
 
     /**

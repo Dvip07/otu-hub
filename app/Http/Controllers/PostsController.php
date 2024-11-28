@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostsRequest;
 use App\Http\Requests\UpdatePostsRequest;
 use App\Models\Posts;
+use App\Models\User;
+use App\Models\Community;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Models\Comments;
@@ -31,9 +33,16 @@ class PostsController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('posts.create');
-    }
+{
+    $user_id = Auth::user()->id;
+    // Check if the current user is affiliated with any community using Eloquent
+    $community = Community::with('user')->where('user_id', $user_id)->get();
+    // dd($community);
+    return view('posts.create', compact('community'));
+}
+
+    
+
 
     /**
      * Store a newly created resource in storage.
@@ -41,32 +50,32 @@ class PostsController extends Controller
     public function store(StorePostsRequest $request)
     {
         $validatedData = $request->validated();
-    
+
         // Handle file upload
         if ($request->hasFile('media')) {
             $file = $request->file('media');
             $timestamp = now()->format('YmdHis');
-    
+
             // Temporarily save the post to get the ID
             $post = new Posts($validatedData);
             $post->user_id = Auth::id();
             $post->save();
-    
+
             // Create a custom file name using post_id and timestamp
             $fileName = 'post_' . $post->id . '_' . $timestamp . '.' . $file->getClientOriginalExtension();
-    
+
             // Move the file directly into the public directory
             $file->move(public_path('uploads'), $fileName);
-    
+
             // Save the relative path to the database
             $post->update(['media' => 'uploads/' . $fileName]);
-    
+
             return redirect()->route('posts.index')->with('success', 'Post created successfully!');
         } else {
             return back()->withErrors($validatedData)->withInput();
         }
     }
-    
+
 
 
     public function viewPost($id)

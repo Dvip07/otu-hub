@@ -50,6 +50,8 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::resource('posts', PostsController::class);
 
     // Community
+    Route::get('create/{community}/post', [CommunityController::class, 'createCommunityPost'])->name('create-community-post');
+    Route::post('store/{community}/post', [CommunityController::class, 'storeCommunityPost'])->name('store-community-post');
     Route::resource('community', CommunityController::class);
 
     // Engagement
@@ -63,6 +65,8 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     Route::resource('comments', CommentsController::class);
 
     // Route::get('/add/post', [DashboardController::class, 'add'])->name('add-post');
+    // Users
+    Route::resource('users', UserController::class);
 
     Route::post('/change-password/{id}', [UserController::class, 'changePassword'])->name('password.change');
 

@@ -106,7 +106,8 @@
                     @php
                         $postMedia = asset('storage/posts/' . $post->media);
                     @endphp
-                    <img class="card-img-bottom mb-3" src="{{$postMedia}}" alt="{{$post->text}}" />
+                    {{-- <img class="card-img-bottom mb-3" src="{{$postMedia}}" alt="{{$post->text}}" /> --}}
+                    <img class="card-img-bottom mb-3" src="{{ asset($post->media) }}" alt="Post image">
                     <div class="mb-4 col-md-12">
                         <div class="row">
                             <div class="col-md-6">

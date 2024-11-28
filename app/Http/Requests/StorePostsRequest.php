@@ -26,6 +26,7 @@ class StorePostsRequest extends FormRequest
             'desc' => 'required|string|max:255',
             'media' => 'nullable|file|mimes:jpg,png,gif|max:2048', 
             'links' => 'nullable|url',
+            'community_id' => 'required| nullable',
         ];
     }
 }

@@ -22,8 +22,14 @@ class StoreCommunityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255 | nullable',
+            'description' => 'required|string|max:255',
+            'avatar' => [
+            'nullable',
+            'image',
+            'mimes:jpeg,png,jpg,gif,svg',
+            'max:2048', // 2MB file size limit
+        ],
         ];
     }
 }

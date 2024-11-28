@@ -17,6 +17,7 @@ class Posts extends Model
         'links',
         'tags',
         'user_id',
+        'community_id',
     ]; 
 
     use HasFactory;
@@ -34,5 +35,10 @@ class Posts extends Model
     public function comments()
     {
         return $this->hasMany(Comments::class, 'post_id');
+    }
+
+    public function community()
+    {
+        return $this->belongsTo(Community::class, 'community_id');
     }
 }

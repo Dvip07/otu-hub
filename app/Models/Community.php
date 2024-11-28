@@ -14,8 +14,21 @@ class Community extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'user_id',
         'avatar',
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Posts::class, 'community_id');
+    }
+
+    
     use HasFactory;
 }

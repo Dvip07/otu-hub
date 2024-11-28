@@ -42,21 +42,11 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card mb-2 p-3">
-        <h5 class="card-header text-center">Create a Post</h5>
+        <h5 class="card-header text-center">Create a Post for {{ $community->name }}</h5>
         <div class="card-body">
-            <form method="post" action="{{ url('/posts') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('store-community-post', ['community' => $community->id]) }}" enctype="multipart/form-data">
                 @csrf
-
-                <div class="mb-3">
-                  <label for="communitySelect" class="form-label">Post to</label>
-                  <select class="form-select" id="communitySelect" name="community_id">
-
-                      <option value="">Select Community</option>
-                      @foreach($community as $comm)
-                          <option value="{{ $comm->id }}">{{ $comm->name }}</option>
-                      @endforeach
-                  </select>
-                </div>
+                <input type="hidden" name="community_id" value="{{$community->id}}">
             <!-- Post Title -->
             <div class="mb-3">
               <label for="postTitle" class="form-label">Post Title</label>

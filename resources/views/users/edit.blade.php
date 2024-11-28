@@ -89,16 +89,6 @@
             <!-- User Card -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <div class="user-avatar-section">
-                        <div class="d-flex align-items-center flex-column">
-                            <img class="img-fluid rounded mb-3 pt-1 mt-4" src="../../assets/img/avatars/15.png"
-                                height="100" width="100" alt="User avatar" />
-                            <div class="user-info text-center">
-                                <h4 class="mb-2">Violet Mendoza</h4>
-                                <span class="badge bg-label-secondary mt-1">Author</span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="d-flex justify-content-around flex-wrap mt-3 pt-3 pb-4 border-bottom">
                         <div class="d-flex align-items-start me-4 mt-3 gap-2">
                             <span class="badge bg-label-primary p-2 rounded"><i class="ti ti-checkbox ti-sm"></i></span>
@@ -132,11 +122,11 @@
                                 <span>{{$users->role}}</span>
                             </li>
                         </ul>
-                        <div class="d-flex justify-content-center">
+                        {{-- <div class="d-flex justify-content-center">
                             <a href="javascript:;" class="btn btn-primary me-3" data-bs-target="#editUser"
                                 data-bs-toggle="modal">Edit</a>
                             <a href="javascript:;" class="btn btn-label-danger suspend-user">Suspended</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
